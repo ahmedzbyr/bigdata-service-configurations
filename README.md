@@ -1,2 +1,5 @@
-# bigdata_service_configurations
-Basic Configuration for Bigdata Services
+# Setting Hadoop Environments.
+
+1. [Installing Hadoop Cluster.] (https://github.com/ahmedzbyr/big_config/blob/master/hadoop/README.md)
+2. [Setting up Zookeeper.](https://github.com/ahmedzbyr/big_config/blob/master/zookeeper/README.md)
+3. [Setting up Hbase Cluster.](https://github.com/ahmedzbyr/big_config/blob/master/hbase/README.md)
