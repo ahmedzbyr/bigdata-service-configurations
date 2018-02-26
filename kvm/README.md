@@ -1,12 +1,12 @@
 
 <a name="KVMInstallationonCentOS6x"></a>
 
-#KVM Installation on CentOS 6.x.
+# KVM Installation on CentOS 6.x.
 
 
 ---
 
-###Table of Contents
+### Table of Contents
 
 * <a href="#PreliminaryCheckCheckHardwareVirtualizationSupport">Preliminary Check - Check Hardware Virtualization Support.</a>
 * <a href="#DisableSELinux">Disable SELinux.</a>
@@ -66,7 +66,7 @@ IF NOT THEN DO NOT PROCEED.
 
 <a name="DisableSELinux"></a>
 
-##Disable SELinux.
+## Disable SELinux.
 
 Before installing KVM, be aware that there are several SELinux booleans that can affect the behavior of KVM and libvirt. We will set `disable` in SELinux 
 
@@ -81,21 +81,21 @@ Now reboot the server.
 
 <a name="InstallKVMQEMUandRPMspackages"></a>
 
-##Install KVM, QEMU and RPMs/packages.
+## Install KVM, QEMU and RPMs/packages.
 
 Install `KVM` and `virtinst` (a tool to create VMs).
 
 
 <a name="InstallKVMQEMUanduserspacetools"></a>
 
-###Install KVM, QEMU and user-space tools.
+### Install KVM, QEMU and user-space tools.
 
 	$ sudo yum install kvm libvirt python-virtinst qemu-kvm
 
 
 <a name="Startlibvirtddaemonandsetittoautostart"></a>
 
-###Start libvirtd daemon, and set it to auto-start.
+### Start libvirtd daemon, and set it to auto-start.
 	
 	$ sudo service libvirtd start
 	$ sudo chkconfig libvirtd on
@@ -103,7 +103,7 @@ Install `KVM` and `virtinst` (a tool to create VMs).
 
 <a name="CheckifKVMhassuccessfullybeeninstalled"></a>
 
-###Check if KVM has successfully been installed.
+### Check if KVM has successfully been installed.
 	
 	$ sudo virsh -c qemu:///system list
 
@@ -113,7 +113,7 @@ Install `KVM` and `virtinst` (a tool to create VMs).
 
 <a name="AlsowecandoagroupinstallOptional"></a>
 
-###Also we can do a `group install` (Optional)
+### Also we can do a `group install` (Optional)
 
 	$ sudo yum groupinstall "Virtualisation Tools" "Virtualization Platform"
 	$ sudo yum install python-virtinst
@@ -122,7 +122,7 @@ Install `KVM` and `virtinst` (a tool to create VMs).
 
 <a name="ConfigureLinuxBridgeforVMNetworking"></a>
 
-##Configure Linux Bridge for VM Networking.
+## Configure Linux Bridge for VM Networking.
 
 Installing KVM alone does not allow VMs to communicate with each other or access external networks. 
 We will create a "bridged networking" via Linux bridge.
@@ -130,7 +130,7 @@ We will create a "bridged networking" via Linux bridge.
 
 <a name="Installbridgeutils"></a>
 
-###Install `bridge-utils`.
+### Install `bridge-utils`.
 
 Install a package needed to create and manage bridge devices:
 
@@ -139,7 +139,7 @@ Install a package needed to create and manage bridge devices:
 
 <a name="DisableNetworkManager"></a>
 
-###Disable Network Manager.
+### Disable Network Manager.
 
 Disable Network Manager service if it's enabled, and switch to default net manager as follows.
 
@@ -151,7 +151,7 @@ Disable Network Manager service if it's enabled, and switch to default net manag
 
 <a name="Createbridge"></a>
 
-###Create `bridge`.
+### Create `bridge`.
 
 To create a `bridge` we need to configure an active `network interface` like `eth0`.
 Here we have a `static` IP assignment. 
@@ -229,7 +229,7 @@ This will restart the Network. IMPORTANT : make sure we have the `bridge` config
 
 <a name="InstallVirtManager"></a>
 
-##Install VirtManager.
+## Install VirtManager.
 
 The final step is to install a desktop UI called VirtManager for managing virtual machines (VMs) through libvirt.
 
@@ -237,7 +237,7 @@ The final step is to install a desktop UI called VirtManager for managing virtua
 
 <a name="ToinstallVirtManager"></a>
 
-###To install VirtManager.
+### To install VirtManager.
 
 	$ sudo yum install virt-manager libvirt qemu-system-x86 openss
 
@@ -245,7 +245,7 @@ The final step is to install a desktop UI called VirtManager for managing virtua
 
 <a name="LaunchVirtManagerRemotely"></a>
 
-###Launch VirtManager Remotely.
+### Launch VirtManager Remotely.
 
 	$ sudo yum install xauth 
 	$ sudo vim /etc/ssh/sshd_config
@@ -258,7 +258,7 @@ Make sure we have the below line uncommented in `sshd_config`
 
 <a name="Createwrapperforvirtmanager"></a>
 
-###Create `wrapper` for `virt-manager`.
+### Create `wrapper` for `virt-manager`.
 
 Create a following executable `wrapper` script for virt-manager.
 
@@ -284,7 +284,7 @@ Let give it `exe` permissions.
 
 <a name="InitialInstallation"></a>
 
-###Initial Installation.
+### Initial Installation.
 
 Installing base libraries for `vncserver` to work.
 
@@ -303,7 +303,7 @@ Now make the service on after every reboot
 
 <a name="AddingVNCuserandsettingvncpasswd"></a>
 
-###Adding VNC user and setting `vncpasswd`.
+### Adding VNC user and setting `vncpasswd`.
 
 Assuming we already have a user on the server `ahmed`
 
@@ -340,7 +340,7 @@ Now restart `vncserver`.
 
 <a name="LogginginfromRemotemachine"></a>
 
-###Logging in from Remote machine.
+### Logging in from Remote machine.
 
 Install `vnc-viewer` and enter the `ip` address of `ahmed-server` followed `:2`, which is where the `vncserver` is listing.
 
@@ -359,7 +359,7 @@ And the `password` will be the `vncpasswd` set during the configuration above.
 
 <a name="TroubleshootingKVMandVirtManagersetup"></a>
 
-##Troubleshooting KVM and VirtManager setup.
+## Troubleshooting KVM and VirtManager setup.
 
 >a. If you see the following error when attempting to launch VirtManager remotely, make sure that you use the wrapper script (vm) to launch it, as described above.
 
@@ -388,7 +388,7 @@ Then run the command below and reboot the host machine.
 
 <a name="UpgradeCPURAMinKVM"></a>
 
-##Upgrade CPU/RAM in KVM.
+## Upgrade CPU/RAM in KVM.
 
 You can follow the following steps to increase memory size of your KVM virtual machine.
 
@@ -399,7 +399,7 @@ You can follow the following steps to increase memory size of your KVM virtual m
 
 <a name="Listingvirtualservers"></a>
 
-###Listing `virtual` servers.
+### Listing `virtual` servers.
 
 	[ahmed@ahmed-server ~]$ sudo virsh  list
 	 Id    Name                           State
@@ -413,7 +413,7 @@ You can follow the following steps to increase memory size of your KVM virtual m
 
 <a name="GettingInformationaboutVM"></a>
 
-###Getting Information about `VM`.
+### Getting Information about `VM`.
 	
 	[ahmed@ahmed-server ~]$ sudo virsh dominfo VM-1
 	Id:             8
@@ -434,7 +434,7 @@ You can follow the following steps to increase memory size of your KVM virtual m
 
 <a name="EditHardwareforeachVM"></a>
 
-###Edit Hardware for each `VM`.
+### Edit Hardware for each `VM`.
 	
 	[ahmed@ahmed-server ~]$ sudo virsh edit VM-1
 	Domain VM-1 XML configuration edited.
@@ -487,7 +487,7 @@ Here is now the XML looks like.
 
 <a name="CheckingVMinformation"></a>
 
-###Checking `VM` information.
+### Checking `VM` information.
 	
 	[ahmed@ahmed-server ~]$ sudo virsh dominfo VM-1
 	Id:             -
@@ -510,7 +510,7 @@ And we are done.
 
 <a name="InterfaceChanges"></a>
 
-###Interface Changes.
+### Interface Changes.
 
 By default VMs take 10M as their transmission speed.
 
@@ -543,7 +543,7 @@ More Details here : https://help.ubuntu.com/community/KVM/Networking#virtio
 
 <a name="AddingHDDtoVirtualMachine"></a>
 
-##Adding HDD to Virtual Machine.
+## Adding HDD to Virtual Machine.
 
 Steps to create `virtio` HDD.
 
@@ -557,7 +557,7 @@ Details below.
 
 <a name="FirstCreateaimageusingqemuimgcommand"></a>
 
-###First Create a `image` using `qemu-img` command.
+### First Create a `image` using `qemu-img` command.
 
 Below is the command to create `image`.
 	
@@ -568,12 +568,12 @@ This will create a HDD with 100GB disk.
 
 <a name="AddimagetoVMasavirtioHDD"></a>
 
-###Add `image` to VM as a `virtio` HDD. 
+### Add `image` to VM as a `virtio` HDD. 
 
 
 <a name="Method1AddingimagefromvirtmanagerUI"></a>
 
-####Method 1 - Adding `image` from `virt-manager` UI.
+#### Method 1 - Adding `image` from `virt-manager` UI.
 
 Steps to Adding from the UI.
 
@@ -595,7 +595,7 @@ More Info Here : http://unix.stackexchange.com/questions/92967/how-to-add-extra-
 
 <a name="Method2Addingimageusingvirshcommand"></a>
 
-####Method 2 - Adding `image` using `virsh` command.
+#### Method 2 - Adding `image` using `virsh` command.
 
 To edit the VM configuration use below command.
  
@@ -623,7 +623,7 @@ Now reboot the VM, after restart you will see the new device.
 
 <a name="AddedimagewillappearasdevvdaintheVMformatitusingthemke2fscommand"></a>
 
-###Added `image` will appear as `/dev/vda` in the VM, format it using the `mke2fs` command.
+### Added `image` will appear as `/dev/vda` in the VM, format it using the `mke2fs` command.
 
 Before we mount the device we need to format the device.
 
@@ -634,7 +634,7 @@ This will format the device.
 
 <a name="Addtoetcfstabsothatthedevicecanbemountedonbootup"></a>
 
-###Add to `/etc/fstab`, so that the device can be mounted on boot up. 
+### Add to `/etc/fstab`, so that the device can be mounted on boot up. 
 
 	# /etc/fstab 
 	# 
@@ -655,7 +655,7 @@ Check by running below command.
 
 <a name="UsefulLinks"></a>
 
-##Useful Links.
+## Useful Links.
 
 	http://xmodulo.com/install-configure-kvm-centos.html
 	http://www.cyberciti.biz/faq/kvm-virtualization-in-redhat-centos-scientific-linux-6/
