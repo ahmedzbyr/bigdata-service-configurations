@@ -6,7 +6,7 @@
 
 ---
 
-###Table of Contents
+### Table of Contents
 
 1. <a href="#Hardware Configuration.">Hardware Configuration.</a>
 2. <a href="#Services Running on each Server.">Services Running on each Server.</a>
