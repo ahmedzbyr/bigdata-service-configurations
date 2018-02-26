@@ -6,7 +6,7 @@
 
 ---
 
-###Table of Contents
+### Table of Contents
 
 * <a href="#InitialServerSetup">Initial Server Setup</a>
 	* <a href="#HardwareInformation">Hardware Information</a>
@@ -169,7 +169,7 @@ Node 2: 6148914691236517205
 
 <a name="OnNodeCASSANDRA01"></a>
 
-###On Node `CASSANDRA01`
+### On Node `CASSANDRA01`
 
 	cluster_name: 'MyCassandraCluster'
 	initial_token: 0
@@ -210,7 +210,7 @@ Node 2: 6148914691236517205
 
 <a name="OnNodeCASSANDRA03"></a>
 
-###On Node `CASSANDRA03`
+### On Node `CASSANDRA03`
 
 	cluster_name: 'MyCassandraCluster'
 	initial_token: 6148914691236517205
