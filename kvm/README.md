@@ -53,7 +53,7 @@
 
 <a name="PreliminaryCheckCheckHardwareVirtualizationSupport"></a>
 
-##Preliminary Check - Check Hardware Virtualization Support.
+## Preliminary Check - Check Hardware Virtualization Support.
 
 We can check the `cpuinfo` details to check if our `h/w` can do VM.
 
